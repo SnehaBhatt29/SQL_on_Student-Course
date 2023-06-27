@@ -1,0 +1,84 @@
+CREATE TABLE Student (
+    Stu_id INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Age INT,
+    Course_ID VARCHAR(10),
+    CGPA float
+);
+insert into Student values (001,'Smriti',20,'BSC009',9.8),
+ (002,'Sita',21,'BSC008',7.8),
+ (003,'Kriti',23,'BSC005',8.8),
+ (004,'Ruehi',23,'BSC003',9.1),
+ (005,'Geeti',20,'BSC007',9.6),
+ (006,'Mahesh',22,'BSC006',7.3),
+ (007,'Rahul',21,'BSC004',8.6),
+ (008,'Rajesh',20,'BSC012',9.5);
+
+CREATE TABLE Courses (
+    Course_name VARCHAR(50),
+    Fees varchar,
+    Course_ID VARCHAR(10) PRIMARY KEY,
+    Duration varchar);
+insert into Courses values ('IT','3.5 L','SC001','4Ys'),
+('Finance','4 L','BSC002','2Ys'),
+('Computer Sci','3.2 L','BSC003','4Ys'),
+('Physics','3 L','BSC004','3Ys'),
+('Statistic','3.2 L','BSC005','3Ys'),
+('Chemistry','3.4 L','BSC006','3Ys'),
+('Maths','3.6 L','BSC007','4Ys'),
+('cyber security','4 L','BSC008','3Ys'
+);
+
+
+select * from Courses;
+select * from Student;
+
+update Courses
+set Fees = '3.1', Duration ='2Ys'
+where Course_ID = 'BSC004';
+update Student
+set CGPA = '8.1', Age ='22'
+where Course_ID = 'BSC004';
+
+Delete from Student
+where Stu_id=008;
+
+alter table Student
+add Admission date;
+
+alter table Courses
+rename to Department;
+
+alter table Student
+drop Age;
+
+alter table Department
+rename Course_name to Cname;
+
+select * from Student;
+select * from Department;
+
+inner join
+select  Stu_id, Name, Course_name, Fees, Duration
+from Student s, Courses c
+where s.Course_ID = c.Course_ID;
+
+select Name, Course_name, Fees, Duration
+from Student
+left join Courses
+on Student.Course_ID=Courses.Course_ID;
+
+select Course_ID, Name, Fees, Age
+from Student
+right join Courses
+on Student.Course_ID=Courses.Course_ID;
+
+select *
+from Student
+full outer join Courses
+on Student.Course_ID=Courses.Course_ID;
+
+select * from Student cross join Courses
+where Student.Course_ID=Courses.Course_ID;
+
+Select Cname from Department;
